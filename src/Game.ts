@@ -34,6 +34,10 @@ export class Game {
     }
 
     public nextTurn(): void {
+        if (this.turn === this.players.length - 1) {
+            this.turn = 0;
+            return;
+        }
         this.turn++;
     }
 

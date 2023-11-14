@@ -35,3 +35,12 @@ test("nextTurn should increase the turn by 1", () => {
     const actual = game.getCurrentPlayer().index;
     expect(actual).toBe(expected);
 });
+
+test("calling nextTurn should reset the turn to 0 if the last player has had their turn", () => {
+    const expected = 0;
+    const game = new Game(2, 1);
+    game.nextTurn();
+    game.nextTurn();
+    const actual = game.getCurrentPlayer().index;
+    expect(actual).toBe(expected);
+});
