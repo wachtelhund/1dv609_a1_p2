@@ -3,6 +3,7 @@ import { Player } from "./Player";
 
 export class Game {
     private players: Player[] = [];
+    private turn: number = 0;
 
     constructor(amountOfPlayers: number, dicePerPlayer: number) {
         if (amountOfPlayers < 2) {
@@ -25,7 +26,16 @@ export class Game {
     }
 
     public getPlayerIndex(): number {
-        return 1;
+        return 0;
     }
 
+    public getCurrentPlayer(): GamePlayer {
+        return new GamePlayer(this.players[this.turn], this.turn);
+    }
+
+}
+
+export class GamePlayer {
+    constructor(public player: Player, public index: number) {
+    }
 }
