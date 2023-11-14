@@ -14,3 +14,21 @@ test("value should be 1 if no rolls have occured", () => {
     const actual = die.getValue();
     assert.equal(actual, expected);
 });
+
+test("roll should change the state of the value", () => {
+    const expected = 4;
+    const die = new DieStub(6);
+    die.roll();
+    const actual = die.getValue();
+
+});
+
+class DieStub extends Die {
+    constructor(sides: number) {
+        super(sides);
+    }
+
+    roll() {
+        super.value = 4;
+    }
+}
