@@ -41,6 +41,16 @@ export class Game {
         this.turn++;
     }
 
+    public getLeaderBoard(): GamePlayer[] {
+        const sorted = this.players.sort((a, b) => {
+            return b.getSum() - a.getSum();
+        });
+
+        return sorted.map((player, index) => {
+            return new GamePlayer(player, index);
+        });
+    }
+
 }
 
 export class GamePlayer {
