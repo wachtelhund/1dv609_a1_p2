@@ -1,17 +1,9 @@
 import { Die } from "./Die";
 
 export class Player {
-    private dies: Die[] = [];
-    constructor(private numberOfDies: number) {
-        if (numberOfDies < 1) {
+    constructor(private dies: Die[]) {
+        if (dies.length < 1) {
             throw new RangeError("Amount of dies must be greater than 0");
-        }
-        this.addDies(numberOfDies);
-    }
-
-    private addDies(numberOfDies: number): void{
-        for (let i = 0; i < numberOfDies; i++) {
-            this.dies.push(new Die(6));
         }
     }
 
@@ -23,5 +15,9 @@ export class Player {
         return sum;
     }
 
-
+    public roll(): void {
+        this.dies.forEach(die => {
+            die.roll();
+        });
+    }
 }
