@@ -15,20 +15,11 @@ test("value should be 1 if no rolls have occured", () => {
     assert.equal(actual, expected);
 });
 
-test("roll should change the state of the value", () => {
+test("roll should set the value to a number within side bounds", () => {
     const expected = 4;
-    const die = new DieStub(6);
+    const sides = 6;
+    const die = new Die(sides);
     die.roll();
-    const actual = die.getValue();
-
+    const actual = die.getValue() >= 1 && die.getValue() <= sides;
+    expect(actual).toBe(true);
 });
-
-class DieStub extends Die {
-    constructor(sides: number) {
-        super(sides);
-    }
-
-    roll() {
-        super.value = 4;
-    }
-}

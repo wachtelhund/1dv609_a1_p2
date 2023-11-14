@@ -1,7 +1,11 @@
 export class Die {
-    private value: number = 1;
+    protected value: number = 1;
 
     constructor(private sides: number) {
+    }
+
+    roll() {
+        this.value = Math.floor(Math.random() * this.sides) + 1;
     }
 
     getSides(): number {
