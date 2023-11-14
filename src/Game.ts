@@ -44,6 +44,14 @@ export class Game {
 }
 
 export class GamePlayer {
-    constructor(public player: Player, public index: number) {
+    constructor(private player: Player, public index: number) {
+    }
+
+    public getSum(): number {
+        return this.player.getSum();
+    }
+
+    public roll(): void {
+        this.player.roll();
     }
 }

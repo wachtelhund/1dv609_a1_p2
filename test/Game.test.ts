@@ -2,6 +2,7 @@ import { expect, test } from "bun:test";
 import { Game, GamePlayer } from "../src/Game";
 import { Player } from "../src/Player";
 import { Die } from "../src/Die";
+import assert from "assert";
 
 test("should throw error if number of players is less than 2", () => {
     expect(() => new Game(1, 1)).toThrow();
@@ -19,10 +20,7 @@ test("getPlayerIndex should return the index of the player with the current turn
 });
 
 test("getCurrentPlayer should return an instance of GamePlayer including the current player and index", () => {
-    const expected = {
-        player: new Player([new Die(6)]),
-        index: 0
-    }
+    const expected = new GamePlayer(new Player([new Die(6)]), 0);
     const game = new Game(2, 1);
     const actual = game.getCurrentPlayer();
     expect(actual).toEqual(expected);
@@ -43,4 +41,20 @@ test("calling nextTurn should reset the turn to 0 if the last player has had the
     game.nextTurn();
     const actual = game.getCurrentPlayer().index;
     expect(actual).toBe(expected);
+});
+
+test("calling getLeaderBoard should return an array of GamePlayers sorted by sum of dies", () => {
+    const amountOfPlayers = 3;
+    const game = new Game(amountOfPlayers, 5);
+    while (game.getPlayerIndex() !== 0) {
+        game.getCurrentPlayer().roll();
+        game.nextTurn();
+    }
+    const actual = game.getLeaderBoard();
+    const firstSum = actual[0].getSum();
+    for (let i = 0; i < actual.length; i++) {
+        if (actual[i].getSum() < firstSum) {
+            assert.fail("Array is not sorted");
+        }
+    }
 });
