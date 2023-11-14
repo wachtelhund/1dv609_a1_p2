@@ -15,3 +15,20 @@ test("getPlayerIndex should return the index of the player with the current turn
     const actual = game.getPlayerIndex();
     expect(actual).toBe(expected);
 });
+
+test("getCurrentPlayer should return an instance of GamePlayer including the current player and index", () => {
+    const expected = {
+        index: 1,
+        player: {
+            dies: [
+                {
+                    sides: 6,
+                    value: 1
+                }
+            ]
+        }
+    };
+    const game = new Game(2, 1);
+    const actual = game.getCurrentPlayer();
+    expect(actual).toEqual(expected);
+});
