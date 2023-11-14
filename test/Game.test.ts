@@ -27,3 +27,11 @@ test("getCurrentPlayer should return an instance of GamePlayer including the cur
     const actual = game.getCurrentPlayer();
     expect(actual).toEqual(expected);
 });
+
+test("nextTurn should increase the turn by 1", () => {
+    const expected = 1;
+    const game = new Game(2, 1);
+    game.nextTurn();
+    const actual = game.getCurrentPlayer().index;
+    expect(actual).toBe(expected);
+});
