@@ -47,13 +47,13 @@ test("calling getLeaderBoard should return an array of GamePlayers sorted by sum
     const amountOfPlayers = 3;
     const game = new Game(amountOfPlayers, 5);
     while (game.getPlayerIndex() !== 0) {
-        game.getCurrentPlayer().roll();
+        game.getCurrentPlayer().player.roll();
         game.nextTurn();
     }
     const actual = game.getLeaderBoard();
-    const firstSum = actual[0].getSum();
+    const firstSum = actual[0].player.getSum();
     for (let i = 0; i < actual.length; i++) {
-        if (actual[i].getSum() < firstSum) {
+        if (actual[i].player.getSum() < firstSum) {
             assert.fail("Array is not sorted");
         }
     }

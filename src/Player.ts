@@ -20,4 +20,10 @@ export class Player {
             die.roll();
         });
     }
+
+    public toString(): string {
+        return this.dies.map(die => {
+            return die.getValue();
+        }).join(", ");
+    }
 }

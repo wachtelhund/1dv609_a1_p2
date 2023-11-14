@@ -42,26 +42,18 @@ export class Game {
     }
 
     public getLeaderBoard(): GamePlayer[] {
-        const sorted = this.players.sort((a, b) => {
+        const sorted = Array.from(this.players).sort((a, b) => {
             return b.getSum() - a.getSum();
         });
 
-        return sorted.map((player, index) => {
-            return new GamePlayer(player, index);
+        return sorted.map((player) => {
+            return new GamePlayer(player, this.players.indexOf(player));
         });
     }
 
 }
 
 export class GamePlayer {
-    constructor(private player: Player, public index: number) {
-    }
-
-    public getSum(): number {
-        return this.player.getSum();
-    }
-
-    public roll(): void {
-        this.player.roll();
+    constructor(public player: Player, public index: number) {
     }
 }

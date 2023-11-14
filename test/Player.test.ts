@@ -18,7 +18,7 @@ test("getSum should return the sum of all dies", () => {
     const expected = 6;
     const player = new Player([new DieStub(), new DieStub(), new DieStub()]);
     player.roll();
-    player.getSum();
+    
     const actual = player.getSum();
     assert.equal(actual, expected);
 });
