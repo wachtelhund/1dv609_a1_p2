@@ -16,7 +16,6 @@ test("value should be 1 if no rolls have occured", () => {
 });
 
 test("roll should set the value to a number within side bounds", () => {
-    const expected = 4;
     const sides = 6;
     const die = new Die(sides);
     die.roll();
