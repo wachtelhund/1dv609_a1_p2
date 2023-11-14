@@ -1,5 +1,3 @@
-import { setSystemTime } from "bun:test";
-import { Die } from "./src/Die";
 import { Game } from "./src/Game";
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
