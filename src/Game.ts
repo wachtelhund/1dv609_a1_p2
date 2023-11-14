@@ -33,6 +33,10 @@ export class Game {
         return new GamePlayer(this.players[this.turn], this.turn);
     }
 
+    public nextTurn(): void {
+        this.turn++;
+    }
+
 }
 
 export class GamePlayer {
